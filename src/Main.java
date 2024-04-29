@@ -19,8 +19,8 @@ public class Main {
             // 사칙연산 기호를 적합한 타입의 변수에 저장
             char operator = sc.next().charAt(0);
 
-            double result = 0;
-            switch (operator) { // 사칙연산에 맞는 연산 하기
+            double result = 0; // 사칙연산 결과
+            switch (operator) { // 사칙연산 기호에 맞는 연산 하기
                 case '+':
                     result = var1 + var2;
                     System.out.println("결과: " + result);
@@ -35,7 +35,7 @@ public class Main {
                     break;
                 case '/':
                     if (var2 == 0) {
-                        System.out.println("0으로 나눌 수 없습니다.");
+                        System.out.println("0으로 나눌 수 없습니다."); // 0으로 나눗셈을 시도하면 처음으로 이동함
                         continue;
                     }
                     result = (double) var1 / var2;
@@ -64,7 +64,7 @@ public class Main {
             if (inquiry.equals("inquiry")) {
                 System.out.print("저장된 결과: ");
                 for (int i = 0; i < resultQueue.size(); i++) {
-                    double temp = resultQueue.poll();
+                    double temp = resultQueue.poll(); // 맨 앞의 큐의 값을 리턴하고 삭제한다.
                     System.out.print(temp + " ");
                     resultQueue.add(temp);
                 } // 큐의 사이즈만큼 삭제하고 삭제한 값을 다시 입력하는거 반복(결과적으로 같은 내용물의 큐가 됨)
