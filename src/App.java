@@ -5,7 +5,9 @@ import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
-        Calculator calculator = null;
+        Calculator calculator;
+        Calculator arithmeticCalculator = new AritihmeticCalculator();
+        Calculator circleCalculator = new CircleCalculator();
         Scanner sc = new Scanner(System.in);
         while(true) {
             System.out.println("사칙연산을 하시겠습니까? 혹은 원의 넓이를 계산하시겠습니까? (사칙연산은 1, 원의 넓이는 2)");
@@ -21,6 +23,7 @@ public class App {
                 // 사칙연산 기호를 적합한 타입의 변수에 저장
                 char operator = sc.next().charAt(0);
                 Operator op;
+                calculator = arithmeticCalculator;
                 try {
                     switch (operator) {
                         case '+':
@@ -44,7 +47,7 @@ public class App {
                         default:
                             throw new BadRequest(operator);
                     }
-                    calculator = new AritihmeticCalculator(op);
+                    ((AritihmeticCalculator) calculator).setOperator(op);
                     double result = ((AritihmeticCalculator) calculator).calculate(var1, var2);
                     System.out.println("연산 결과 : " + result); // 연산 결과 출력
                     calculator.setResult(result); // 결과 큐에 값 저장
@@ -57,7 +60,7 @@ public class App {
                 System.out.print("원의 반지름을 입력하세요: ");
                 // Scanner로 양의 정수를 입력받고 적합한 타입의 변수에 저장
                 int var = sc.nextInt();
-                calculator = new CircleCalculator();
+                calculator = circleCalculator;
 
                 double result = ((CircleCalculator) calculator).calculate(var);
                 System.out.println(result);
